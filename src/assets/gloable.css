@@ -15,3 +15,12 @@
 .pd-10{
    padding: 10px 0;
 }
+
+.dis{
+    display: none;
+}
+
+.el-table__row:hover .el-table_1_column_8   .el-table__cell{
+    display: block;
+}
+

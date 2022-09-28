@@ -4,12 +4,18 @@ import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './assets/gloable.css'
+import request from "../../src/main/java/com/qx/demo/utils/request";
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI,{size:"mini"})
 
+Vue.prototype.request = request
+
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
+  beforeCreate() {
+    Vue.prototype.$bus = this
+  }
 }).$mount('#app')
