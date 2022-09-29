@@ -2,19 +2,26 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Manage from '../views/Manage.vue'
 import User from "@/views/User";
+import Home from "@/views/Home";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'manage',
+    name: '大概框架',
     component: Manage,
+    redirect:"/home",
     children:[
       {
         path: 'user',
-        name: 'User',
+        name: '用户管理',
         component:User
+      },
+      {
+        path: 'home',
+        name: '主页',
+        component:Home
       }
     ]
   },
@@ -30,5 +37,14 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) =>{
+  console.log(to)
+  next(vm => {
+    vm.$bus.$emit("getPathName",to.name)
+  });
+
+})
+
 
 export default router

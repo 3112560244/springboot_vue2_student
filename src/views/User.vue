@@ -1,10 +1,6 @@
 <template>
   <div>
-    <!--   //主页页签显示当前页面的路径-->
-    <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-    </el-breadcrumb>
+
 
 
     <div style="margin: 10px 0">

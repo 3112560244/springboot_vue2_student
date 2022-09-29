@@ -3,7 +3,18 @@
     <!--        收缩按钮-->
     <div style="flex: 1;font-size: 24px">
       <span :class="collapseBtnClass" style="cursor: pointer; font-size: 18px" @click="collapse"></span>
+
+
+      <!--   //主页页签显示当前页面的路径-->
+      <el-breadcrumb class="ml-5" separator="/" style="display:inline-block">
+        <el-breadcrumb-item :to="'/'">主页</el-breadcrumb-item>
+        <el-breadcrumb-item>{{pathName}}</el-breadcrumb-item>
+      </el-breadcrumb>
+
     </div>
+
+
+
 
     <!--        用户信息-->
     <el-dropdown style="width: 100px; cursor: pointer">
@@ -31,9 +42,14 @@ export default {
       sideWidth:200,
       //主页文字是否隐藏
       LogoText: true,
+      //路由变量
+      paths:[],
+      pathName : "",
+
     }
   },
   methods:{
+    //导航收缩
     collapse(){
       this.isCollapse = !this.isCollapse;
       if(this.isCollapse){
@@ -49,6 +65,7 @@ export default {
       this.$bus.$emit ('getLogoText',this.LogoText)
       this.$bus.$emit ('getSideWidth',this.sideWidth)
     },
+
   },
   mounted() {
     this.$bus.$on('getIsCollapse',data =>{
@@ -59,7 +76,15 @@ export default {
       this.isCollapse = data
       console.log(data)
     })
+
+    this.$bus.$on('getPathName',data =>{
+      this.pathName = data
+      console.log(data)
+    })
   },
+
+
+
 
   // props:['collapseBtnClass','collapse']
 
