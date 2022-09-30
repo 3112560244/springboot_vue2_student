@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Manage from '../views/Manage.vue'
 import User from "@/views/User";
 import Home from "@/views/Home";
+import Login from "@/views/Login";
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/about',
     name: 'about',
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
+  {
+    path: '/login',
+    name: '登录',
+    component:Login
   }
 ]
 

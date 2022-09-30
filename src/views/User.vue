@@ -5,7 +5,7 @@
 
     <div style="margin: 10px 0">
       <el-input  style="width: 200px" placeholder="请输入名称"  v-model="selectName"  suffix-icon="el-icon-search" class="mr-5"></el-input>
-      <el-input  style="width: 200px" placeholder="请输入邮箱" v-model="selectEmail" suffix-icon="el-icon-message"class="mr-5"></el-input>
+      <el-input  style="width: 200px" placeholder="请输入邮箱" v-model="selectEmail" suffix-icon="el-icon-message" class="mr-5"></el-input>
       <el-input  style="width: 200px" placeholder="请输入地址" v-model="selectAddress" suffix-icon="el-icon-position" class="mr-5"></el-input>
       <el-button class="mr-5" type="primary" @click="load">搜索</el-button>
       <el-button class="mr-5" type="waring" @click="reset">重置</el-button>
@@ -28,8 +28,10 @@
         <el-button type="danger" slot="reference" class="mr-5">批量删除 <i class="el-icon-remove-outline"></i></el-button>
       </el-popconfirm>
 
-      <el-button type="primary">导入 <i class="el-icon-bottom"></i></el-button>
-      <el-button type="primary">导出 <i class="el-icon-top"></i></el-button>
+      <el-upload action="http://localhost:9090/user/import" :show-file-list="false" accept="xlsx" :on-success="importUser" style="display: inline-block">
+        <el-button type="primary" class="ml-5">导入 <i class="el-icon-bottom"></i></el-button>
+      </el-upload>
+      <el-button type="primary" @click="exportUser" class="ml-5">导出 <i class="el-icon-top"></i></el-button>
     </div>
 
     <el-table :data="tableData" border stripe     @selection-change="handleSelectionChange">
@@ -214,6 +216,13 @@ export default {
 
       })
     },
+    exportUser(){
+      window.open("http://localhost:9090/user/export")
+    },
+    importUser(){
+      this.$message.success("导入成功")
+      this.load()
+    }
   },
   created() {
     //请求分页查询数据
