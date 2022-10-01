@@ -18,12 +18,19 @@
 
     <!--        用户信息-->
     <el-dropdown style="width: 100px; cursor: pointer">
+      <div style="display: inline-block">
+        <img :src="user.avatarUrl" alt="" style="width: 30px; border-radius:50%;position: relative; top: 10px; right: 5px">
+      </div>
 
-      <span>王小虎</span>
+      <span>{{ user.nickname }}</span>
       <i class="el-icon-setting" style="margin-right: 15px;margin-left: 10px"></i>
       <el-dropdown-menu slot="dropdown" >
-        <el-dropdown-item>个人信息</el-dropdown-item>
-        <el-dropdown-item>退出登录</el-dropdown-item>
+        <el-dropdown-item>
+          <span @click="$router.push('person')">个人信息</span>
+        </el-dropdown-item>
+        <el-dropdown-item>
+          <span @click="signOut">退出登录</span>
+        </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
@@ -45,6 +52,8 @@ export default {
       //路由变量
       paths:[],
       pathName : "",
+      //用户名
+      user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")):{}
 
     }
   },
@@ -65,6 +74,12 @@ export default {
       this.$bus.$emit ('getLogoText',this.LogoText)
       this.$bus.$emit ('getSideWidth',this.sideWidth)
     },
+    //登出
+    signOut(){
+      this.$router.push("/login")
+      localStorage.removeItem("user")
+      this.$message.success("退出成功")
+    }
 
   },
   mounted() {
@@ -81,6 +96,7 @@ export default {
       this.pathName = data
       console.log(data)
     })
+
   },
 
 

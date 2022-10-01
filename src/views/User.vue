@@ -163,11 +163,11 @@ export default {
     },
     deleteById(id){
       this.request.delete(`/user/deleteById/`+id).then(res=>{
-        if(res){
+        if(res.code ==='200'){
           this.$message.success("删除成功")
           this.load();
         }else {
-          this.$message.error("删除失败")
+          this.$message.error(res.msg)
         }
 
       }).catch(e =>{
@@ -186,12 +186,12 @@ export default {
     },
     save(){
       this.request.post("/user/save",this.form).then(res =>{
-        if(res){
+        if(res.code ==='200'){
           this.$message.success("保存成功")
           this.dialogFormVisible = false
           this.load()
         }else {
-          this.$message.error("保存失败")
+          this.$message.error(res.msg)
         }
       })
 
@@ -207,11 +207,11 @@ export default {
     delBatch(){
       let ids = this.multipleSelection.map(v =>v.id)
       this.request.post("/user/deleteBatch",ids).then(res =>{
-        if(res){
+        if(res.code ='200'){
           this.$message.success("批量删除成功");
           this.load();
         }else {
-          this.$message.error("批量删除失败")
+          this.$message.error(res.msg)
         }
 
       })
