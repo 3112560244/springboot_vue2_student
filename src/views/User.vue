@@ -144,9 +144,15 @@ export default {
           address:this.selectAddress
         }
       }).then(res =>{
-        console.log(res)
-        this.tableData = res.records
-        this.total = res.total
+        if(res.code === '200'){
+          console.log(res)
+          this.tableData = res.data.records
+          this.total = res.data.total
+        }else {
+          this.$message.error(res.msg)
+        }
+
+
       })
       // fetch("http://localhost:9090/user/page?pageNum="+this.pageNum+"&pageSize="+this.pageSize+"&username="+this.selectName+"&email="+this.selectEmail+"&address="+this.selectAddress).then(res=>res.json()).then(res =>{
       //   this.tableData = res.records;
