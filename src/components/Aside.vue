@@ -38,7 +38,14 @@
       </template>
       <el-menu-item-group>
           <el-menu-item index="/user">
-            <i class="el-icon-user"></i>用户管理</el-menu-item>
+            <i class="el-icon-user"></i>
+            用户管理
+          </el-menu-item>
+
+        <el-menu-item index="/file">
+          <i class="el-icon-document"></i>
+          <span slot="title">文件管理</span>
+        </el-menu-item>
 
       </el-menu-item-group>
     </el-submenu>
