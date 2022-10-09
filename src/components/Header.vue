@@ -73,6 +73,7 @@ export default {
       this.$bus.$emit ('getIsCollapse',this.isCollapse)
       this.$bus.$emit ('getLogoText',this.LogoText)
       this.$bus.$emit ('getSideWidth',this.sideWidth)
+
     },
     //登出
     signOut(){
@@ -94,6 +95,10 @@ export default {
 
     this.$bus.$on('getPathName',data =>{
       this.pathName = data
+      console.log(data)
+    })
+    this.$bus.$on('getUser',data =>{
+      this.user = data
       console.log(data)
     })
 

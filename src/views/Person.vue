@@ -68,19 +68,8 @@ export default {
         if(res.code === '200'){
           this.$message.success("保存成功")
 
-          //更新localStorage中的用户信息
-          this.getUser()
-          let user = this.form
-          console.log(user)
-          user.token =JSON.parse(localStorage.getItem("user")).token
-          this.user.token = user.token
-          this.user.avatarUrl = user.avatarUrl
-          this.user.password = user.password
-          this.user.username = user.username
-          this.user.nickname = user.nickname
-          localStorage.setItem("user",JSON.stringify(this.user))
-
-
+          // 触发父亲方法
+          this.$emit("refreshUser")
 
         }else {
           this.$message.error(res.msg)

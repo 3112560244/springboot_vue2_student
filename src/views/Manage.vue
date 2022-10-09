@@ -14,7 +14,7 @@
 
       <!--      主要内容-->
       <el-main>
-        <router-view  />
+        <router-view @refreshUser="getUser" />
       </el-main>
 
     </el-container>
@@ -41,10 +41,32 @@ export default {
     this.$bus.$on('getSideWidth',data =>{
       this.sideWidth = data;
     })
+
   },
 
 
   methods:{
+    getUser(){
+      this.request.post("/user/username/"+this.user.username).then(res => {
+        if (res.code === '200') {
+
+          let user = res.data
+          console.log(user)
+          user.token =JSON.parse(localStorage.getItem("user")).token
+          this.user.token = user.token
+          this.user.avatarUrl = user.avatarUrl
+          this.user.password = user.password
+          this.user.username = user.username
+          this.user.nickname = user.nickname
+          localStorage.setItem("user",JSON.stringify(this.user))
+
+          //做bus 传参到header
+          this.$bus.$emit ('getUser',this.user)
+
+
+        }
+      })
+    },
 
   },
   components: {
