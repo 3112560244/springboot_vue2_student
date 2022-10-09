@@ -16,8 +16,8 @@
 
 
 
-    <!--        用户信息-->
-    <el-dropdown style="width: 100px; cursor: pointer">
+    <!--        用户信息 text-align: right 设置整体右对齐  width: 300px 设置容器大小 -->
+    <el-dropdown style="width: 300px; cursor: pointer;text-align: right">
       <div style="display: inline-block">
         <img :src="user.avatarUrl" alt="" style="width: 30px; border-radius:50%;position: relative; top: 10px; right: 5px">
         <span>{{ user.nickname }}</span>
