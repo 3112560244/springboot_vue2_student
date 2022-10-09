@@ -20,10 +20,10 @@
     <el-dropdown style="width: 100px; cursor: pointer">
       <div style="display: inline-block">
         <img :src="user.avatarUrl" alt="" style="width: 30px; border-radius:50%;position: relative; top: 10px; right: 5px">
+        <span>{{ user.nickname }}</span>
+        <i class="el-icon-setting" style="margin-right: 15px;margin-left: 10px"></i>
       </div>
 
-      <span>{{ user.nickname }}</span>
-      <i class="el-icon-setting" style="margin-right: 15px;margin-left: 10px"></i>
       <el-dropdown-menu slot="dropdown" >
         <el-dropdown-item>
           <span @click="$router.push('person')">个人信息</span>

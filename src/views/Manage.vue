@@ -14,7 +14,7 @@
 
       <!--      主要内容-->
       <el-main>
-        <router-view/>
+        <router-view  />
       </el-main>
 
     </el-container>
@@ -32,6 +32,9 @@ export default {
     return {
       // 菜单默认宽度
       sideWidth:200,
+      //用户名
+      user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")):{},
+
     }
   },
   mounted() {
